@@ -19,7 +19,7 @@
 	String edit = request.getParameter("edit");
 %>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	
 	<div class="jumbotron">
 		<div class="container">
@@ -29,23 +29,23 @@
 	</div>
 	      
 	<div class="container">	
-	<%
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-				try {
-					String url = "jdbc:mysql://localhost:3306/BookMarketDB";
-					String user = "root";
-					String password = "1234";
-
-					Class.forName("com.mysql.jdbc.Driver");
-					conn = DriverManager.getConnection(url, user, password);
-
-					String sql = "select * from book";
-					pstmt = conn.prepareStatement(sql);
-					rs = pstmt.executeQuery();
-					while (rs.next()) {
-			%>
+		<%
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				String url = "jdbc:mysql://localhost:3306/BookMarketDB";
+				String user = "root";
+				String password = "1234";
+		
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(url, user, password);
+		
+				String sql = "select * from book";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+		%>
 		<div class="row" >
 			<div class="col-md-3" align="center">	
 			<img src="c:/upload/<%=rs.getString("b_fileName")%>" style="width: 50%">
@@ -59,7 +59,7 @@
 				<%
 						if (edit.equals("update")) {
 					%>
-					<a href="./updateBook.jsp?id=<%=rs.getString("b_id")%>"
+					<a href="./bookUpdate.jsp?id=<%=rs.getString("b_id")%>"
 						class="btn btn-success" role="button"> 수정 &raquo;></a>
 					<%
 						} else if (edit.equals("delete")) {
@@ -89,6 +89,6 @@
 				}
 			%>
 	</div>	
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="./footer.jsp" />
 </body>
 </html>

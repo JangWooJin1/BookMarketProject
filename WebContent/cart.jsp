@@ -12,7 +12,7 @@
 <title>Cart</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-4">장바구니</h1>
@@ -55,7 +55,7 @@
 					<td><%=book.getUnitPrice()%></td>
 					<td><%=book.getQuantity()%></td>
 					<td><%=total%></td>
-					<td><a href="./removeCart.jsp?id=<%=book.getBookId()%>"
+					<td><a href="./cartRemove.jsp?id=<%=book.getBookId()%>"
 						class="badge badge-danger">삭제</a></td>
 				</tr>
 				<%
@@ -74,6 +74,6 @@
 		</div>
 		<hr>
 	</div>
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="./footer.jsp" />
 </body>
 </html>

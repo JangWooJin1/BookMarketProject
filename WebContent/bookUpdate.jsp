@@ -6,7 +6,7 @@
 <title>상품 수정</title>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="./menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품 수정</h1>
@@ -41,7 +41,7 @@
 					style="width: 100%" />
 			</div>
 			<div class="col-md-8">
-				<form name="newBook" action="./processUpdateBook.jsp"
+				<form name="newBook" action="./bookUpdateProcess.jsp"
 					class="form-horizontal" method="post" enctype="multipart/form-data">
 		<div class="form-group row">
 				<label class="col-sm-3">도서ID</label>
