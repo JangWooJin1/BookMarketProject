@@ -2,5 +2,5 @@
 
 <%
 	session.invalidate();
-	response.sendRedirect("addBook.jsp");
+	response.sendRedirect("welcome.jsp");
 %>

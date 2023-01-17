@@ -7,6 +7,9 @@
 <title>Welcome</title>
 </head>
 <body>	
+	<% 
+		session.setAttribute("isadmin",-1);
+	%>
 	<%@ include file="menu.jsp"%>
 	<%! String greeting = "도서 웹 쇼핑몰";
 	String tagline = "Welcome to Web Market!"; %>

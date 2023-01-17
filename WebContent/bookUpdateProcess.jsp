@@ -110,7 +110,7 @@
 			conn.close();
 	}
 
-	response.sendRedirect("editBook.jsp?edit=update");
+	response.sendRedirect("bookEdit.jsp?edit=update");
 %>
 
 

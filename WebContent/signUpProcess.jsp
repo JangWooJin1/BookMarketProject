@@ -1,12 +1,19 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
+<%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
 
 <%
-	String bookId = request.getParameter("id");
+	request.setCharacterEncoding("UTF-8");
 
+	String id = request.getParameter("id");
+	String pw = request.getParameter("pw");
+	
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+
 	try {
 		String url = "jdbc:mysql://localhost:3306/BookMarketDB";
 		String user = "root";
@@ -15,27 +22,22 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(url, user, password);
 
-		String sql = "select * from book";
+		String sql = "insert into account values(?,?)";
 		pstmt = conn.prepareStatement(sql);
-		rs = pstmt.executeQuery();
+		pstmt.setString(1, id);
+		pstmt.setString(2, pw);
+	
+		pstmt.executeUpdate();
 
-		if (rs.next()) {
-			sql = "delete from book where b_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, bookId);
-			pstmt.executeUpdate();
-		} else
-			out.println("일치하는 상품이 없습니다");
 	} catch (SQLException ex) {
-		out.println("데이터베이스 접속이 실패되었습니다.<br>");
+		out.println("account 테이블에 삽입이 실패되었습니다.<br>");
 		out.println("SQLException: " + ex.getMessage());
 	} finally {
-		if (rs != null)
-			rs.close();
 		if (pstmt != null)
 			pstmt.close();
 		if (conn != null)
 			conn.close();
 	}
-	response.sendRedirect("bookEdit.jsp?edit=delete");
+
+	response.sendRedirect("books.jsp");
 %>

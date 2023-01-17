@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	function deleteConfirm(id) {
 		if (confirm("해당 도서를 삭제합니다!!") == true)
-			location.href = "./deleteBook.jsp?id=" + id;
+			location.href = "./bookDelete.jsp?id=" + id;
 		else
 			return;
 	}
@@ -45,6 +45,10 @@
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
+					String description = rs.getString("b_description");
+					if (description.length() > 100){
+						description = description.substring(0, 100) + "...";
+					}
 		%>
 		<div class="row" >
 			<div class="col-md-3" align="center">	
@@ -52,7 +56,7 @@
 			</div>			
 			<div class="col-md-7">	
 				<p><h5 ><b>[<%=rs.getString("b_category")%>] <%=rs.getString("b_name")%></b></h5>
-				<p style="padding-top: 20px"><%=rs.getString("b_description").substring(0, 100)%>... 
+				<p style="padding-top: 20px"><%=description%>
 				<p><%=rs.getString("b_author")%> | <%=rs.getString("b_publisher")%> | <%=rs.getString("b_unitPrice")%>원
 			</div>	
 			<div class="col-md-2"  style="padding-top: 70px">						    			 
