@@ -1,15 +1,26 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <nav class="navbar navbar-expand  navbar-dark bg-dark">
+			<% 
+				int isadmin = (int) session.getAttribute("isadmin");
+			%>
+
 		<div class="container">			
 			<div class="navbar-header">
-				<a class="navbar-brand" href="./welcome.jsp">Home</a>
+				<% 
+					if (isadmin != -1)
+					{
+						String id = (String) session.getAttribute("id");
+				%>
+				<span class="navbar-brand" ><%=id%>님 환영합니다!</span>
+				<% 
+					}
+				%>
 			</div>
 		</div>	
 		<div>
 			<ul class="navbar-nav mr-auto">
 			
 			<% 
-				int isadmin = (int) session.getAttribute("isadmin");
 				if (isadmin == -1)
 				{
 			%>

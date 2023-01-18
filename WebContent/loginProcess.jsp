@@ -34,6 +34,7 @@
 				else{
 					session.setAttribute("isadmin",0);
 				}
+				session.setAttribute("id", id);
 				response.sendRedirect("books.jsp");
 			}
 			else{

@@ -39,5 +39,5 @@
 			conn.close();
 	}
 
-	response.sendRedirect("books.jsp");
+	response.sendRedirect("./welcome.jsp");
 %>

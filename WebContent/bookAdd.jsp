@@ -6,11 +6,6 @@
 <script>
 function CheckAddBook() {
 
-	/*var bookId = document.newBook.bookId.value;
-	var name = document.newBook.name.value;
-	var unitPrice = document.newBook.unitPrice.value;
-	var unitsInStock = document.newBook.unitsInStock.value;
-	*/
 	var bookId = document.getElementById("bookId");
 	var name = document.getElementById("name");
 	var unitPrice = document.getElementById("unitPrice");
