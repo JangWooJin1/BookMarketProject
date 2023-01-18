@@ -2,6 +2,10 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Book"%>
 <%@ page import="dao.BookRepository"%>
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.sql.*"%>
 
 <html>
 <head>
@@ -24,7 +28,7 @@
 				<tr>
 					<td align="left"><a href="./cartDelete.jsp?cartId=<%=cartId%>"
 						class="btn btn-danger">삭제하기</a></td>
-					<td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기	</a></td>		
+					<td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>		
 					</a></td>
 				</tr>
 			</table>
@@ -40,25 +44,62 @@
 					<th>비고</th>
 				</tr>
 				<%				
+					String a_id = (String) session.getAttribute("id");
+				
+					Connection conn = null;
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					ResultSet rs2 = null;
+	
+					Book book = new Book();
+					String b_id;
 					int sum = 0;
-					ArrayList<Book> cartList = (ArrayList<Book>) session.getAttribute("cartlist");
-					if (cartList == null)
-						cartList = new ArrayList<Book>();
-
-					for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
-						Book book = cartList.get(i);
-						int total = book.getUnitPrice() * book.getQuantity();
-						sum = sum + total;
+					try {
+						String url = "jdbc:mysql://localhost:3306/BookMarketDB";
+						String user = "root";
+						String password = "1234";
+	
+						Class.forName("com.mysql.jdbc.Driver");
+						conn = DriverManager.getConnection(url, user, password);
+	
+						String sql;
+						
+						sql = "select * from cart WHERE account_id = ?";
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, a_id);
+						rs = pstmt.executeQuery();
+						
+						while(rs.next()){
+							book.setQuantity(rs.getInt("quantity"));
+							b_id = rs.getString("book_id");	
+							
+							sql = "select * from book where b_id = ?";
+							pstmt = conn.prepareStatement(sql);
+							pstmt.setString(1, b_id);
+							rs2 = pstmt.executeQuery();
+							if (rs2.next()) {
+								sum += rs2.getInt("b_unitPrice") * rs.getInt("quantity");
+							
 				%>
-				<tr>
-					<td><%=book.getBookId()%> - <%=book.getName()%></td>
-					<td><%=book.getUnitPrice()%></td>
-					<td><%=book.getQuantity()%></td>
-					<td><%=total%></td>
-					<td><a href="./cartRemove.jsp?id=<%=book.getBookId()%>"
-						class="badge badge-danger">삭제</a></td>
-				</tr>
+								<tr>
+									<td><%=rs2.getString("b_id")%> - <%=rs2.getString("b_name")%></td>
+									<td><%=rs2.getInt("b_unitPrice")%></td>
+									<td><%=rs.getInt("quantity")%></td>
+									<td><%= rs2.getInt("b_unitPrice") * rs.getInt("quantity")%></td>
+									<td><a href="./cartRemove.jsp?id=<%=rs2.getString("b_id")%>"
+										class="badge badge-danger">삭제</a></td>
+								</tr>
 				<%
+							}
+						}
+					} catch (SQLException ex) {
+						out.println("book DB 탐색이 실패하였습니다.<br>");
+						out.println("SQLException: " + ex.getMessage());
+					} finally {
+						if (pstmt != null)
+							pstmt.close();
+						if (conn != null)
+							conn.close();
 					}
 				%>
 				<tr>

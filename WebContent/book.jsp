@@ -63,7 +63,7 @@
 				<p><b>재고수</b> : <%=rs.getString("b_unitsInStock")%>				
 				<h4><%=rs.getString("b_unitPrice")%>원</h4>
 				<p><form name="addForm" 
-					action="./cartAdd.jsp?id=<%=rs.getString("b_id")%>"
+					action="./cartAdd.jsp?b_id=<%=rs.getString("b_id")%>"
 					method="post">
 					<a href="#" class="btn btn-info" onclick="addToCart()"> 장바구니 추가
 						&raquo;</a> <a href="./books.jsp" class="btn btn-secondary">

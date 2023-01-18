@@ -2,51 +2,76 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.Book"%>
 <%@ page import="dao.BookRepository"%>
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.sql.*"%>
 
 <%
-	String id = request.getParameter("id");
-	if (id == null || id.trim().equals("")) {
+	String a_id = (String) session.getAttribute("id");
+	String b_id = request.getParameter("b_id");
+	if (b_id == null || b_id.trim().equals("")) {
 		response.sendRedirect("books.jsp");
 		return;
 	}
-
-	BookRepository dao = BookRepository.getInstance();
-
-	Book book = dao.getBookById(id);
-	if (book == null) {
-		response.sendRedirect("exceptionNoBookId.jsp");
-	}
-
-	ArrayList<Book> goodsList = dao.getAllBooks();
-	Book goods = new Book();
-	for (int i = 0; i < goodsList.size(); i++) {
-		goods = goodsList.get(i);
-		if (goods.getBookId().equals(id)) { 			
-			break;
-		}
-	}
 	
-	ArrayList<Book> list = (ArrayList<Book>) session.getAttribute("cartlist");
-	if (list == null) { 
-		list = new ArrayList<Book>();
-		session.setAttribute("cartlist", list);
-	}
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 
-	int cnt = 0;
-	Book goodsQnt = new Book();
-	for (int i = 0; i < list.size(); i++) {
-		goodsQnt = list.get(i);
-		if (goodsQnt.getBookId().equals(id)) {
-			cnt++;
-			int orderQuantity = goodsQnt.getQuantity() + 1;
-			goodsQnt.setQuantity(orderQuantity);
+	try {
+		String url = "jdbc:mysql://localhost:3306/BookMarketDB";
+		String user = "root";
+		String password = "1234";
+
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection(url, user, password);
+
+		String sql;
+		
+		//먼저 해당 책이 장바구니에 이미 존재하는지 확인
+		sql = "select * from cart WHERE account_id = ? AND book_id = ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, a_id);
+		pstmt.setString(2, b_id);
+		rs = pstmt.executeQuery();
+		
+		
+		if(rs.next()){ //이미 책이 장바구니에 존재한다면 수량값만 1증가
+			int quantity = rs.getInt("quantity");
+			sql = "UPDATE cart SET quantity=? where account_id = ? AND book_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, quantity+1);
+			pstmt.setString(2, a_id);
+			pstmt.setString(3, b_id);
+			pstmt.executeUpdate();
 		}
+		else{ //책이 장바구니에 없다면 책 id가 book DB에 존재하는지 확인
+			sql = "select * from book where b_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {	//장바구니에 책 추가
+				sql = "insert into cart(account_id,book_id,quantity) values(?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, a_id);
+				pstmt.setString(2, b_id);
+				pstmt.setInt(3, 1);
+				pstmt.executeUpdate();
+			}
+			else{	//(예외처리)book DB에 해당 책 id가 없는 경우
+				response.sendRedirect("exceptionNoBookId.jsp");
+			}	
+		}
+	} catch (SQLException ex) {
+		out.println("book DB 탐색이 실패하였습니다.<br>");
+		out.println("SQLException: " + ex.getMessage());
+	} finally {
+		if (pstmt != null)
+			pstmt.close();
+		if (conn != null)
+			conn.close();
 	}
 
-	if (cnt == 0) { 
-		goods.setQuantity(1);
-		list.add(goods);
-	}
-
-	response.sendRedirect("book.jsp?id=" + id);
+	response.sendRedirect("book.jsp?id=" + b_id);
 %>
