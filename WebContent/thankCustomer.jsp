@@ -86,8 +86,13 @@
 		pstmt.setString(5, shipping_shippingDate);
 		pstmt.setString(6, book_ids);
 		pstmt.setString(7, quantitys);
-	
 		pstmt.executeUpdate();
+		
+		sql = "delete from cart WHERE account_id = ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, a_id);
+		pstmt.executeUpdate();
+		
 	
 	} catch (SQLException ex) {
 		out.println("DB연결 실패.<br>");
