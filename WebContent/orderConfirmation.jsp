@@ -1,18 +1,15 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.ArrayList"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="dto.Book"%>
-<%@ page import="dao.BookRepository"%>
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.sql.*"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String cartId = session.getId();
-
-	String shipping_cartId = "";
 	String shipping_name = "";
 	String shipping_shippingDate = "";
-	String shipping_country = "";
 	String shipping_zipCode = "";
 	String shipping_addressName = "";
 	
@@ -22,17 +19,13 @@
 		for (int i = 0; i < cookies.length; i++) {
 			Cookie thisCookie = cookies[i];
 			String n = thisCookie.getName();
-			if (n.equals("Shipping_cartId"))
-				shipping_cartId = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 			if (n.equals("Shipping_name"))
 				shipping_name = URLDecoder.decode((thisCookie.getValue()), "utf-8");
-			if (n.equals("Shipping_shippingDate"))
-				shipping_shippingDate = URLDecoder.decode((thisCookie.getValue()), "utf-8");
-			if (n.equals("Shipping_country"))
-				shipping_country = URLDecoder.decode((thisCookie.getValue()), "utf-8");
-			if (n.equals("Shipping_zipCode"))
+			else if (n.equals("shipping_shippingDate"))
+				shipping_shippingDate = thisCookie.getValue();
+			else if (n.equals("Shipping_zipCode"))
 				shipping_zipCode = URLDecoder.decode((thisCookie.getValue()), "utf-8");
-			if (n.equals("Shipping_addressName"))
+			else if (n.equals("Shipping_addressName"))
 				shipping_addressName = URLDecoder.decode((thisCookie.getValue()), "utf-8");
 
 		}
@@ -59,7 +52,7 @@
 			<div class="col-4" align="left">
 				<strong>배송 주소</strong> <br> 성명 : <% out.println(shipping_name); %>	<br> 
 				우편번호 : <% 	out.println(shipping_zipCode);%><br> 
-				주소 : <%	out.println(shipping_addressName);%>(<%	out.println(shipping_country);%>) <br>
+				주소 : <%	out.println(shipping_addressName);%> <br>
 			</div>
 			<div class="col-4" align="right">
 				<p>	<em>배송일: <% out.println(shipping_shippingDate);	%></em>
@@ -69,28 +62,80 @@
 			<table class="table table-hover">			
 			<tr>
 				<th class="text-center">도서</th>
-				<th class="text-center">#</th>
+				<th class="text-center">수량</th>
 				<th class="text-center">가격</th>
 				<th class="text-center">소계</th>
 			</tr>
 			<%
-				int sum = 0;
-				ArrayList<Book> cartList = (ArrayList<Book>) session.getAttribute("cartlist");
-				if (cartList == null)
-					cartList = new ArrayList<Book>();
-				for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
-					Book book = cartList.get(i);
-					int total = book.getUnitPrice() * book.getQuantity();
-					sum = sum + total;
+			String a_id = (String) session.getAttribute("id");
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			ResultSet rs2 = null;
+
+			String b_id;
+			String book_ids="";
+			String quantitys="";
+			int sum = 0;
+			int total;
+			try {
+				String url = "jdbc:mysql://localhost:3306/BookMarketDB";
+				String user = "root";
+				String password = "1234";
+
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection(url, user, password);
+
+				String sql;
+				
+				sql = "select * from cart WHERE account_id = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, a_id);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					b_id = rs.getString("book_id");	
+					
+					sql = "select * from book where b_id = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, b_id);
+					rs2 = pstmt.executeQuery();
+					if (rs2.next()) {
+						total = rs2.getInt("b_unitPrice") * rs.getInt("quantity");
+						sum += rs2.getInt("b_unitPrice") * rs.getInt("quantity");
+						book_ids += b_id + "/";
+						quantitys += rs.getInt("quantity") + "/";
+			
 			%>
-			<tr>
-				<td class="text-center"><em><%=book.getName()%> </em></td>
-				<td class="text-center"><%=book.getQuantity()%></td>
-				<td class="text-center"><%=book.getUnitPrice()%>원</td>
-				<td class="text-center"><%=total%>원</td>
-			</tr>
+						<tr>
+							<td class="text-center"><em><%=rs2.getString("b_name")%> </em></td>
+							<td class="text-center"><%=rs.getInt("quantity")%></td>
+							<td class="text-center"><%=rs2.getInt("b_unitPrice")%>원</td>
+							<td class="text-center"><%=total%>원</td>
+						</tr>
 			<%
+					}
 				}
+				
+				Cookie BookIds = new Cookie("book_ids", book_ids);
+				Cookie Quantitys = new Cookie("quantitys", quantitys);
+				
+				BookIds.setMaxAge(365 * 24 * 60 * 60);
+				response.addCookie(BookIds);
+				Quantitys.setMaxAge(365 * 24 * 60 * 60);
+				response.addCookie(Quantitys);
+				
+				
+			} catch (SQLException ex) {
+				out.println("DB 탐색이 실패하였습니다.<br>");
+				out.println("SQLException: " + ex.getMessage());
+			} finally {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
 			%>
 			<tr>
 				<td> </td>
@@ -100,7 +145,7 @@
 			</tr>
 			</table>
 			
-				<a href="./shippingInfo.jsp?cartId=<%=shipping_cartId%>"class="btn btn-secondary" role="button"> 이전 </a>
+				<a href="./shippingInfo.jsp"class="btn btn-secondary" role="button"> 이전 </a>
 				<a href="./thankCustomer.jsp"  class="btn btn-success" role="button"> 주문완료 </a>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"	role="button"> 취소 </a>
 			
