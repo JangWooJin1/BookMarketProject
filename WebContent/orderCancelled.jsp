@@ -18,7 +18,7 @@
 	</div>
 	<div class="container">
 		<p>
-			<a href="./products.jsp" class="btn btn-secondary"> &laquo; 상품목록</a>		
+			<a href="./books.jsp" class="btn btn-secondary"> &laquo; 상품목록</a>		
 	</div>	
 </body>
 </html>

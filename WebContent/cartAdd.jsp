@@ -1,7 +1,4 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Book"%>
-<%@ page import="dao.BookRepository"%>
 <%@ page import="com.oreilly.servlet.*"%>
 <%@ page import="com.oreilly.servlet.multipart.*"%>
 <%@ page import="java.util.*"%>
@@ -64,7 +61,7 @@
 			}	
 		}
 	} catch (SQLException ex) {
-		out.println("book DB 탐색이 실패하였습니다.<br>");
+		out.println("DB 탐색이 실패하였습니다.<br>");
 		out.println("SQLException: " + ex.getMessage());
 	} finally {
 		if (pstmt != null)

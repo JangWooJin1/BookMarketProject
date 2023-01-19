@@ -1,7 +1,4 @@
 ﻿<%@ page contentType="text/html; charset=utf-8"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="dto.Book"%>
-<%@ page import="dao.BookRepository"%>
 <%@ page import="com.oreilly.servlet.*"%>
 <%@ page import="com.oreilly.servlet.multipart.*"%>
 <%@ page import="java.util.*"%>
@@ -10,9 +7,6 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-<%
-	String cartId = session.getId();
-%>
 <title>Cart</title>
 </head>
 <body>
@@ -26,9 +20,9 @@
 		<div class="row">
 			<table width="100%">
 				<tr>
-					<td align="left"><a href="./cartDelete.jsp?cartId=<%=cartId%>"
+					<td align="left"><a href="./cartDelete.jsp?b_id=all"
 						class="btn btn-danger">삭제하기</a></td>
-					<td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>		
+					<td align="right"><a href="./shippingInfo.jsp?b_id=all" class="btn btn-success">주문하기</a></td>		
 					</a></td>
 				</tr>
 			</table>
@@ -51,7 +45,6 @@
 					ResultSet rs = null;
 					ResultSet rs2 = null;
 	
-					Book book = new Book();
 					String b_id;
 					int sum = 0;
 					try {
@@ -70,7 +63,6 @@
 						rs = pstmt.executeQuery();
 						
 						while(rs.next()){
-							book.setQuantity(rs.getInt("quantity"));
 							b_id = rs.getString("book_id");	
 							
 							sql = "select * from book where b_id = ?";
@@ -86,14 +78,14 @@
 									<td><%=rs2.getInt("b_unitPrice")%></td>
 									<td><%=rs.getInt("quantity")%></td>
 									<td><%= rs2.getInt("b_unitPrice") * rs.getInt("quantity")%></td>
-									<td><a href="./cartRemove.jsp?id=<%=rs2.getString("b_id")%>"
+									<td><a href="./cartDelete.jsp?b_id=<%=rs2.getString("b_id")%>"
 										class="badge badge-danger">삭제</a></td>
 								</tr>
 				<%
 							}
 						}
 					} catch (SQLException ex) {
-						out.println("book DB 탐색이 실패하였습니다.<br>");
+						out.println("DB 탐색이 실패하였습니다.<br>");
 						out.println("SQLException: " + ex.getMessage());
 					} finally {
 						if (pstmt != null)
