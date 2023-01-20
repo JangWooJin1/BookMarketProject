@@ -2,19 +2,20 @@
 책 유통 플랫폼 개발
 
 ## 프로젝트 목적
-개인 사이드 프로젝트로 Jsp 사용 경험 및 숙련도 향상을 위하여 진행하였음
+개인 사이드 프로젝트로 jsp 사용 경험 및 숙련도 향상을 위하여 진행하였음
 
 ## 기술 스택
-> <img src="https://img.shields.io/badge/Kotlin-7952B3?style=for-the-badge&logo=kotlin&logoColor=white">  
-> <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">  
-> <img src="https://img.shields.io/badge/Thymeleaf-339933?style=for-the-badge&logo=thymeleaf&logoColor=white">    
+> <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white"/>
+> <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
 > <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 
 ## 구현 기능
-### 1. 회원가입 & 로그인
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209555650-98d9578c-4123-4278-8819-7759b107e9b3.png" width="80%" height="80%"/></p>
+### 1. 로그인 & 회원가입
+<p align="center"><img src="https://user-images.githubusercontent.com/110288718/213755373-6996f043-bf53-411b-bd37-17e7ceaef16a.png" width="45%" height="45%"/>>&nbsp;<img src="https://user-images.githubusercontent.com/110288718/213756626-329f8ac6-a7f4-4fbc-9ad7-14b6d3cf6f50.png" width="45%" height="45%"/></p>
 
-**L1** : 아이디 입력&nbsp;&nbsp;&nbsp;**L2** : 패드워드 입력&nbsp;&nbsp;&nbsp;**L3** : 회원가입 페이지 이동&nbsp;&nbsp;&nbsp;**L4** : 로그인 버튼  
+**L1** : 아이디 입력&nbsp;&nbsp;&nbsp;**L2** : 패드워드 입력&nbsp;&nbsp;&nbsp;**L3** : 로그인 버튼 <br>
+**L4** : 아이디 입력&nbsp;&nbsp;&nbsp;**L5** : 패드워드 입력&nbsp;&nbsp;&nbsp;**L6** : 패드워드 확인 입력&nbsp;&nbsp;&nbsp;**L7** : 회원가입 버튼
 
 ### 2. 도서목록
 <p align="center"><img src="https://user-images.githubusercontent.com/45115733/209556047-6b804fd8-40dc-41dc-90f9-ca130abb89f1.png" width="75%" height="75%"/></p>
