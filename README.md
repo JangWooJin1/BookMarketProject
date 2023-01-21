@@ -62,7 +62,7 @@
 
 ### 8. 관리자 페이지
 #### - 도서 추가
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209557532-ee3c7aba-be64-457c-9b87-81ef185a6801.png" width="75%" height="75%"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866619-b2882e1f-66dd-4966-936d-0539ee4f537d.png" width="75%" height="75%"/></p>
 
 **L1** : 메인 이미지 추가&nbsp;&nbsp;&nbsp;
 **L2** : 게임 이름 입력&nbsp;&nbsp;&nbsp;
@@ -74,7 +74,7 @@
 **L8** : 게임 저장&nbsp;&nbsp;&nbsp;
 
 #### - 도서 수정, 삭제
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209557722-90178176-fd20-4375-82e0-d3c27134ec90.png" width="75%" height="75%"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866453-ab3dd853-68f5-46c0-8027-56617271bd3b.png" width="40%" height="40%"/>&nbsp;<img src="https://user-images.githubusercontent.com/110288718/213866441-3d3a09d2-ac54-407c-8c73-02016b02354a.png" width="40%" height="40%"/></p>
 
 **L1** : 메인 이미지 수정&nbsp;&nbsp;&nbsp;
 **L2** : 게임 이름 수정&nbsp;&nbsp;&nbsp;
@@ -86,12 +86,7 @@
 **L8** : 게임 삭제&nbsp;&nbsp;&nbsp;
 **L9** : 수정 사항 저장&nbsp;&nbsp;&nbsp;
 
-### 7. etc...
-#### - 게임 구매  
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209557875-e62cf622-cadd-48aa-92af-6b80eddb22f1.png" width="40%" height="40%"/>&nbsp;<img src="https://user-images.githubusercontent.com/45115733/209557883-76bd98ac-3f60-441e-ab8f-dfc5fd8598e6.png" width="40%" height="40%"/></p>
+#### - 도서 수정
+<p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866723-d5693c13-fb88-488f-82c6-ad63901381b1.png" width="75%" height="75%"/></p>
 
-#### - 게임 머니 충전, 장바구니
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209557890-0b98931c-6dda-42c4-9e42-3b15d46a108d.png" width="40%" height="40%"/>&nbsp;<img src="https://user-images.githubusercontent.com/45115733/209557226-f7e39ebc-d6ab-4663-b4ea-b61745a8f656.png" width="40%" height="40%"/></p>
 
-#### - 게임 머니 현금화, 패스워드 수정
-<p align="center"><img src="https://user-images.githubusercontent.com/45115733/209557899-8e8e5d29-7eeb-4d45-9766-3f8ae8231d62.png" width="40%" height="40%"/>&nbsp;<img src="https://user-images.githubusercontent.com/45115733/209558770-e0069e6a-308a-4739-85d7-598c4dd0c58c.png" width="40%" height="40%"/></p>
