@@ -20,73 +20,59 @@
 ### 2. 도서 목록
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213865447-204be9c7-27d3-4294-9fae-cdeaa00109eb.png" width="75%" height="75%"/></p>
 
-**L1** : 도서 상세정보 페이지 이동 버튼
+**L1** : 도서 상세정보 이동 버튼
 
 ### 3. 도서 상세정보
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213865432-899087ae-c3dd-472b-925c-23738e877eeb.png" width="75%" height="75%"/></p>
 
-**L1** : 장바구니 추가 버튼&nbsp;&nbsp;&nbsp;**L2** : 도서 목록 페이지 이동 버튼
+**L1** : 장바구니 추가 버튼&nbsp;&nbsp;&nbsp;**L2** : 도서 목록 이동 버튼
 
-### 4. 장바구니 페이지
+### 4. 장바구니
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213865530-b1d721af-b49c-4c38-82a5-59767a4f8ba2.png" width="75%" height="75%"/></p>
 
-**L1** : 장바구니에서 상품 전체 삭제 버튼&nbsp;&nbsp;&nbsp;
-**L2** : 해당 상품 장바구니에서 제거 버튼&nbsp;&nbsp;&nbsp;
-**L3** : 도서 목록 페이지 이동 버튼&nbsp;&nbsp;&nbsp;
-**L4** : 장바구니 상품들에 대한 배송을 위한 배송지 입력 페이지로 이동 버튼
+**L1** : 상품 전체 삭제 버튼&nbsp;&nbsp;&nbsp;
+**L2** : 해당 상품 제거 버튼&nbsp;&nbsp;&nbsp;
+**L3** : 도서 목록 이동 버튼&nbsp;&nbsp;&nbsp;
+**L4** : 배송지 입력 이동 버튼
 
 ### 5. 배송지 입력
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213865784-78c96b48-9819-4cbb-8aa7-d42bfb436c85.png" width="75%" height="75%"/></p>
 
-**L1** : 배송정보 입력창&nbsp;&nbsp;&nbsp;
-**L2** : 게임 이름&nbsp;&nbsp;&nbsp;
-**L3** : 서브 이미지&nbsp;&nbsp;&nbsp;
-**L4** : 게임 가격
+**L1** : 배송지 정보 입력창&nbsp;&nbsp;&nbsp;
+**L2** : 이전화면 버튼&nbsp;&nbsp;&nbsp;
+**L3** : 주문 영수증 이동 버튼&nbsp;&nbsp;&nbsp;
+**L4** : 취소 버튼
 
 ### 6. 주문 영수증
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213865956-6372b0c1-e50a-44fd-b94a-76ed1fcbdad3.png" width="75%" height="75%"/></p>
 
-**L1** : 배송정보 입력창&nbsp;&nbsp;&nbsp;
-**L2** : 게임 이름&nbsp;&nbsp;&nbsp;
-**L3** : 서브 이미지&nbsp;&nbsp;&nbsp;
-**L4** : 게임 가격
+**L1** : 이전화면 버튼&nbsp;&nbsp;&nbsp;
+**L2** : 주문 완료 이동 버튼&nbsp;&nbsp;&nbsp;
+**L3** : 취소 버튼
 
 ### 7. 주문 완료
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866052-56f5ce12-073a-453c-aea4-832eaccedf4a.png" width="75%" height="75%"/></p>
 
-**L1** : 배송정보 입력창&nbsp;&nbsp;&nbsp;
-**L2** : 게임 이름&nbsp;&nbsp;&nbsp;
-**L3** : 서브 이미지&nbsp;&nbsp;&nbsp;
-**L4** : 게임 가격
+**L1** : 주문 완료 이동 버튼
 
 
 ### 8. 관리자 페이지
 #### - 도서 추가
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866619-b2882e1f-66dd-4966-936d-0539ee4f537d.png" width="75%" height="75%"/></p>
 
-**L1** : 메인 이미지 추가&nbsp;&nbsp;&nbsp;
-**L2** : 게임 이름 입력&nbsp;&nbsp;&nbsp;
-**L3** : 서브 이미지 추가&nbsp;&nbsp;&nbsp;
-**L4** : 게임 가격 입력&nbsp;&nbsp;&nbsp;
-**L5** : 게임 연령 입력&nbsp;&nbsp;&nbsp;
-**L6** : 게임 상세 정보 입력&nbsp;&nbsp;&nbsp;  
-**L7** : 관리자 메인페이지로 이동&nbsp;&nbsp;&nbsp;
-**L8** : 게임 저장&nbsp;&nbsp;&nbsp;
+**L1** : 도서 정보 입력창&nbsp;&nbsp;&nbsp;
+**L2** : 한글 <-> 영어 전환 버튼&nbsp;&nbsp;&nbsp;
+**L3** : 도서 추가 버튼
 
 #### - 도서 수정, 삭제
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866453-ab3dd853-68f5-46c0-8027-56617271bd3b.png" width="40%" height="40%"/>&nbsp;<img src="https://user-images.githubusercontent.com/110288718/213866441-3d3a09d2-ac54-407c-8c73-02016b02354a.png" width="40%" height="40%"/></p>
 
-**L1** : 메인 이미지 수정&nbsp;&nbsp;&nbsp;
-**L2** : 게임 이름 수정&nbsp;&nbsp;&nbsp;
-**L3** : 서브 이미지 수정&nbsp;&nbsp;&nbsp;
-**L4** : 게임 가격 수정&nbsp;&nbsp;&nbsp;
-**L5** : 게임 연령 수정&nbsp;&nbsp;&nbsp;
-**L6** : 게임 상세 정보 수정&nbsp;&nbsp;&nbsp;  
-**L7** : 관리자 메인페이지로 이동&nbsp;&nbsp;&nbsp;
-**L8** : 게임 삭제&nbsp;&nbsp;&nbsp;
-**L9** : 수정 사항 저장&nbsp;&nbsp;&nbsp;
+**L1** : 도서 수정 정보 입력 이동 버튼 &nbsp;&nbsp;&nbsp;
+**L2** : 도서 삭제 버튼
 
-#### - 도서 수정
+#### - 도서 수정 정보 입력
 <p align="center"><img src="https://user-images.githubusercontent.com/110288718/213866723-d5693c13-fb88-488f-82c6-ad63901381b1.png" width="75%" height="75%"/></p>
 
+**L1** : 도서 정보 입력창&nbsp;&nbsp;&nbsp;
+**L2** : 도서 등록 
 
