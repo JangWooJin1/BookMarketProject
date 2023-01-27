@@ -2,11 +2,12 @@
 북마켓 구현 - 관리자가 등록한 책을 거래하는 웹 서비스
 
 ## 프로젝트 목적
-개인 사이드 프로젝트로 jsp 사용 경험 및 숙련도 향상을 위하여 진행하였음
+개인 프로젝트로 jsp 사용 경험 및 숙련도 향상을 위하여 진행하였음
 
 ## 기술 스택
 > <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white"/>
 > <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+> <img src="https://img.shields.io/badge/Bootstrapap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white"/>
 > <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
 > <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 
@@ -75,4 +76,19 @@
 
 **L1** : 도서 정보 입력창&nbsp;&nbsp;&nbsp;
 **L2** : 도서 등록 
+
+
+## - 시연 영상
+
+### - 회원 책 주문
+https://user-images.githubusercontent.com/110288718/215091113-dc3ae720-b10e-4841-95a4-a0f7e9069231.mp4
+### - 관리자 책 등록/수정/삭제
+https://user-images.githubusercontent.com/110288718/215091021-fc595019-e41e-4153-92ff-611413b1c135.mp4
+
+
+
+
+
+
+
 
